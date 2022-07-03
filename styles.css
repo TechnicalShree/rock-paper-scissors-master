@@ -269,25 +269,21 @@ body {
 .result .btn:hover {
   color: hsl(349, 70%, 56%);
 }
+.winner::before {
+  box-shadow: 0 0 0 50px rgba(255, 255, 255, 0.06),
+    0 0 0 100px rgba(255, 255, 255, 0.04), 0 0 0 150px rgba(255, 255, 255, 0.02);
+}
 
 /* Rules */
 
 .rule_box {
   position: absolute;
   color: white;
-  bottom: -30px;
-  right: 50px;
+  bottom: 40px;
+  right: 40px;
   padding: 0.7rem 2rem;
   border-radius: 10px;
   border: 2px solid hsl(217, 16%, 45%);
   letter-spacing: 2px;
   cursor: pointer;
-}
-
-/* Referance items */
-.none {
-  background: hsl(39, 89%, 49%) to hsl(40, 84%, 53%) hsl(230, 89%, 62%) to
-    hsl(230, 89%, 65%) hsl(349, 71%, 52%) to hsl(349, 70%, 56%)
-    hsl(261, 73%, 60%) to hsl(261, 72%, 63%) hsl(189, 59%, 53%) to
-    hsl(189, 58%, 57%) hsl(229, 25%, 31%) hsl(229, 64%, 46%) hsl(217, 16%, 45%);
 }

@@ -34,6 +34,42 @@ ruleDisplay.addEventListener("click", ruleAdd);
 // Game Logic
 
 // Util functions
+const helper = () => {
+  const myMoveWin = document.querySelector(".me");
+  let houseChoose = houseChoosen();
+  houseMove = assignMove(houseChoose, housePicked, "house");
+  houseDecision.innerHTML = houseMove;
+  const houseMoveWin = document.querySelector(".house");
+
+  if (meChoose == houseChoose) {
+    helper();
+  } else if (
+    (meChoose === 3 && houseChoose === 1) ||
+    (meChoose === 2 && houseChoose === 3) ||
+    (meChoose === 1 && houseChoose === 2)
+  ) {
+    output("YOU LOSE");
+    houseMoveWin.classList.add("winner");
+  } else {
+    output("YOU WIN");
+    myMoveWin.classList.add("winner");
+  }
+  result.classList.remove("remove");
+  if (whoWins) {
+    result.innerHTML = whoWins;
+    const btn = document.querySelector(".btn");
+
+    btn.addEventListener("click", () => {
+      meChoose = 0;
+      houseChoose = 0;
+      decision.classList.add("noplay");
+      result.innerHTML = "";
+      result.classList.add("remove");
+      mainGame.classList.add("active");
+    });
+  }
+};
+
 function output(winner) {
   switch (winner) {
     case "YOU WIN":
@@ -54,21 +90,21 @@ function output(winner) {
   }
 }
 
-function assignMove(key, whoPicked) {
+function assignMove(key, whoPicked, who) {
   let move;
   switch (key) {
     case 1:
-      move = `<h2>${whoPicked}</h2><div class="move rock choosen">
+      move = `<h2>${whoPicked}</h2><div class="move rock choosen ${who}">
       <img src="./images/icon-rock.svg" alt="rock" />
     </div>`;
       break;
     case 2:
-      move = `<h2>${whoPicked}</h2><div class="move paper choosen">
+      move = `<h2>${whoPicked}</h2><div class="move paper choosen ${who}">
       <img src="./images/icon-paper.svg" alt="paper" />
     </div>`;
       break;
     case 3:
-      move = `<h2>${whoPicked}</h2><div class="move scissors choosen">
+      move = `<h2>${whoPicked}</h2><div class="move scissors choosen ${who}">
       <img src="./images/icon-scissors.svg" alt="scissors" />
     </div>`;
       break;
@@ -92,56 +128,26 @@ function houseChoosen() {
 
 // My Moves
 
-const myMovePass = (choose) => {
-  myMove = assignMove(choose, mePicked);
+const myMovePass = () => {
+  myMove = assignMove(meChoose, mePicked, "me");
   decision.classList.remove("noplay");
   myDecision.innerHTML = myMove;
   clear();
   houseDecision.innerHTML = `<h2>${housePicked}</h2>
   <div class="pending"></div>`;
 
-  setTimeout(() => {
-    let num = houseChoosen();
-    houseMove = assignMove(num, housePicked);
-    houseDecision.innerHTML = houseMove;
-    if (choose == num) {
-      output("DRAW");
-    } else if ((choose == 3 && num === 1) || choose > num) {
-      output("YOU WIN");
-    } else {
-      output("YOU LOSE");
-    }
-    result.classList.remove("remove");
-    if (whoWins) {
-      result.innerHTML = whoWins;
-      const btn = document.querySelector(".btn");
-
-      btn.addEventListener("click", () => {
-        console.log("BTN clicked");
-        meChoose = 0;
-        houseChoose = 0;
-        decision.classList.add("noplay");
-        result.innerHTML = "";
-
-        mainGame.classList.add("active");
-      });
-    }
-
-    console.log(choose + " " + num);
-  }, 1000);
+  setTimeout(helper, 1000);
 };
 
 scissorsChoosen.addEventListener("click", () => {
   meChoose = 3;
-  myMovePass(meChoose);
+  myMovePass();
 });
 paperChoosen.addEventListener("click", () => {
   meChoose = 2;
-  myMovePass(meChoose);
+  myMovePass();
 });
 rockChoosen.addEventListener("click", () => {
   meChoose = 1;
-  myMovePass(meChoose);
+  myMovePass();
 });
-
-// Play Again
