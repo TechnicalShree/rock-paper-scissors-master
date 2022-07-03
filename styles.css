@@ -8,7 +8,7 @@
 }
 body {
   background: radial-gradient(hsl(214, 47%, 23%), hsl(237, 49%, 15%));
-  min-height: 745.6px;
+  height: 745.6px;
   width: 100%;
   position: relative;
   display: flex;
@@ -286,4 +286,107 @@ body {
   border: 2px solid hsl(217, 16%, 45%);
   letter-spacing: 2px;
   cursor: pointer;
+}
+
+@media (max-width: 375px) {
+  body {
+    width: 100vw;
+    height: 100vh;
+  }
+  .rules.active .rule_bg {
+    display: none;
+  }
+  .rules.active .rule_container .rule_heading {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    flex-direction: column;
+    margin: 0;
+    top: 0;
+    left: 0;
+  }
+  .rules.active .rule_container .rule_heading .rule_name {
+    position: relative;
+    top: 80px;
+  }
+  .rules.active .rule_container .rule_heading #rule_close {
+    position: relative;
+    bottom: 60px;
+  }
+  .rules.active .rule_container .rule_image {
+    width: 100%;
+    margin: auto;
+    padding: 2rem;
+    margin-top: 50%;
+  }
+  .rules.active .rule_container {
+    width: 100vw;
+    min-height: 100vh;
+    border-radius: 0;
+  }
+
+  .game {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .game .dashboard {
+    width: 100%;
+    margin: 1rem;
+    height: auto;
+  }
+  .game .dashboard .game_name h2 {
+    font-size: 20px;
+    line-height: 1rem;
+  }
+  .game .dashboard .score_board {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 5px;
+  }
+  .game .dashboard .score_board p {
+    font-size: 0.5rem;
+  }
+  .game .dashboard .score_board .score {
+    margin: 10px 0;
+    font-size: 2rem;
+  }
+
+  .main_game.active,
+  .decision {
+    transform: scale(0.5);
+  }
+  .main_game.active {
+    width: 200%;
+    height: 100%;
+    top: 0;
+  }
+  .decision {
+    width: 200%;
+  }
+
+  .my_side,
+  .house_side,
+  .result {
+    width: 350px;
+  }
+
+  .result {
+    transform: scale(1.6);
+    position: absolute;
+    margin: auto;
+    bottom: -7rem;
+  }
+  .result h2 {
+    margin: 0.8rem auto;
+  }
+
+  .rule_box {
+    margin: auto;
+    /* bottom: 3rem; */
+    right: auto;
+  }
 }
