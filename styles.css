@@ -312,13 +312,13 @@ body {
   }
   .rules.active .rule_container .rule_heading #rule_close {
     position: relative;
-    bottom: 60px;
+    bottom: 100px;
   }
   .rules.active .rule_container .rule_image {
     width: 100%;
     margin: auto;
     padding: 2rem;
-    margin-top: 50%;
+    margin-top: 30%;
   }
   .rules.active .rule_container {
     width: 100vw;
@@ -388,6 +388,7 @@ body {
   .rule_box {
     margin: auto;
     /* bottom: 3rem; */
+    bottom: 4rem;
     right: auto;
   }
 }
