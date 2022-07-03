@@ -10,6 +10,7 @@ const myDecision = document.querySelector(".my_side");
 const houseDecision = document.querySelector(".house_side");
 const result = document.querySelector(".result");
 const decision = document.querySelector(".decision");
+const score = document.querySelector(".score");
 
 const mePicked = "YOU PICKED";
 const housePicked = "THE HOUSE PICKED";
@@ -18,6 +19,9 @@ let houseChoose;
 let myMove;
 let houseMove;
 let whoWins;
+let scores = 0;
+
+score.innerHTML = scores;
 
 const ruleRemove = () => {
   ruleToggle.classList.remove("active");
@@ -34,7 +38,16 @@ ruleDisplay.addEventListener("click", ruleAdd);
 // Game Logic
 
 // Util functions
+function scoreUpdater(add) {
+  if (scores <= 0 && add === -1) {
+    return;
+  } else {
+    scores += add;
+  }
+}
+
 const helper = () => {
+  let addScore = 0;
   const myMoveWin = document.querySelector(".me");
   let houseChoose = houseChoosen();
   houseMove = assignMove(houseChoose, housePicked, "house");
@@ -50,15 +63,18 @@ const helper = () => {
   ) {
     output("YOU LOSE");
     houseMoveWin.classList.add("winner");
+    addScore = -1;
   } else {
     output("YOU WIN");
     myMoveWin.classList.add("winner");
+    addScore = 1;
   }
+  scoreUpdater(addScore);
   result.classList.remove("remove");
   if (whoWins) {
     result.innerHTML = whoWins;
     const btn = document.querySelector(".btn");
-
+    score.innerHTML = scores;
     btn.addEventListener("click", () => {
       meChoose = 0;
       houseChoose = 0;
