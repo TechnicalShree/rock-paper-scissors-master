@@ -19,7 +19,12 @@ let houseChoose;
 let myMove;
 let houseMove;
 let whoWins;
-let scores = 0;
+let scores;
+if (localStorage.RPS_Game_Score) {
+  scores = Number(localStorage.RPS_Game_Score);
+} else {
+  scores = 0;
+}
 
 score.innerHTML = scores;
 
@@ -44,6 +49,7 @@ function scoreUpdater(add) {
   } else {
     scores += add;
   }
+  localStorage.setItem("RPS_Game_Score", scores);
 }
 
 const helper = () => {
