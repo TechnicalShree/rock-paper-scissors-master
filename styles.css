@@ -288,7 +288,8 @@ body {
   cursor: pointer;
 }
 
-@media (max-width: 375px) {
+/* @media (max-width: 375px) { */
+@media (max-width: 768px) {
   body {
     width: 100vw;
     height: 100vh;
